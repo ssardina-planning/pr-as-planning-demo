@@ -6,7 +6,8 @@ Demo for Plan Recognition as Planning over Classical Action Theories
 
 The demo requires:
 
- 1. The sources of the automated planning toolkit [https://github.com/LAPKT-dev/LAPKT-public](LAPKT), which you will need to clone.
+ 1. The sources of the automated planning toolkit [LAPKT](https://github.com/LAPKT-dev/LAPKT-public), which you will 
+ need to clone.
  2. The Qt4 development libraries.  Note that latest versions of Ubuntu come with Qt5 pre-installed. Getting Qt4 installed 'alongside' Qt5 is trivial in Ubuntu 16.04, all is needed is the following command
  ```
  $ sudo apt install libqt4-dev qt4-dev-tools
@@ -15,14 +16,27 @@ The demo requires:
 
 ### Build procedure
 
+#### Build via QMAKE
+
 Some quick and dirty instructions to build this project:
 
- 1. go into the folder lapkt-lib and edit the script SConstruct, changing the paths in lines 18-19 so they point to the location where you cloned LAPKT-public,
+1. Go into the folder lapkt-lib and edit the script SConstruct, changing the paths in lines 18-19 so they point to 
+the location where you cloned LAPKT-public,
+2. Issue the command 'scons', this will produce the binaries for the planning algorithms needed by the demo,
+3. Go back into the root folder of the demo sources and edit line 10 of the  sim-home.pro file, changing the 
+references to LAPKT-public as appropiate,
+4. Produce the `Makefile` script via:
+    * `qmake -o Makefile sim-home.pro` (if you have just Qt4 installed in your system)
+    * `qmake-qt4 -o Makefile sim-home.pro` (if you have both Qt4 and Qt5 installed in your system)
+5. Build the app with ```make```.
+6. Run `./sim-house`
 
- 2. issue the command 'scons', this will produce the binaries for the planning algorithms needed by the demo,
 
- 3. go back into the root folder of the demo sources and edit line 10 of the  sim-home.pro file, changing the references to LAPKT-public as appropiate,
+#### Build via CMAKE
 
- 4. issue the command ```qmake``` (or ```qmake-qt4``` if you have *both* Qt4 and Qt5 installed in your system). This will produce a working Makefile script,
-
- 5. build the app with ```make```.
+1. Set variable `LAPKT_DIR` in `CMakeList.txt` to the source directory for LAPKT.
+2. Get into a directory to build: `mkdir build ; cd build`
+3. Run CMAKE to generate building files: `cmake ..`
+4. Compile using `make`
+5. Run sim-house: `cd .. ; ./build/sim-house`
+    * Note working directory has to be the root directory (not `build/`).
