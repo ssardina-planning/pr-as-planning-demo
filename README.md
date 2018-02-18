@@ -1,6 +1,8 @@
-## pr-as-planning-demo
+## Goal/Plan Recognition as Planning Demo
 
-Demo for Plan Recognition as Planning over Classical Action Theories
+Demo for Plan Recognition as Planning over Classical Action Theories.
+
+A person is observed doing things in a house. The Goal Recognition system computes the probability of each potential goal that the agent may be pursuing.
 
 ### Pre-requisites
 
