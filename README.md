@@ -36,3 +36,6 @@ Second, we can compile the demo either via QMAKE or CMAKE.
 3. Compile using `make`
 4. Run sim-house: `cd .. ; ./build/sim-house`
     * Note working directory has to be the root directory (not `build/`).
+    
+    
+  ![screenshot](extras/screenshot02.png)  
