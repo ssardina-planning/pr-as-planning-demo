@@ -4,6 +4,14 @@
 
 TEMPLATE = app
 TARGET = sim-home
+DESTDIR = ./
+BUILDDIR = .build/
+OBJECTS_DIR = $$BUILDDIR/.obj
+MOC_DIR = $$BUILDDIR/.moc
+RCC_DIR = $$BUILDDIR/.qrc
+UI_DIR = $$BUILDDIR/.ui
+
+
 #CONFIG += debug
 DEPENDPATH += . widgets model planning
 QMAKE_CXXFLAGS += -std=c++0x

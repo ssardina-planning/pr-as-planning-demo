@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(pr_as_planning_demo)
 
-SET(LAPKT_DIR /home/ssardina/git/soft/planning/LAPKT-public.git)
+SET(LAPKT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/extras/LAPKT-public)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
