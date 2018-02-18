@@ -4,7 +4,6 @@ debug = ARGUMENTS.get( 'debug', 0 )
 common_env = Environment(ENV = os.environ)
 
 common_env.Append( CCFLAGS = [ '-Wall', '-std=c++11' ] )
-#common_env.Append( LINKFLAGS = [ '-static' ] )
 
 if int(debug) == 1 :
         common_env.Append( CCFLAGS = ['-g',  '-DDEBUG' ] )
@@ -15,7 +14,9 @@ else:
 
 Export( 'common_env' )
 
-generic_objs = SConscript('../extras/LAPKT-public/src/SConscript.aptk')
-agnostic_objs = SConscript('../extras/LAPKT-public/interfaces/agnostic/SConscript.agnostic')
+generic_objs = SConscript('../../src/SConscript.aptk')
+agnostic_objs = SConscript('../../interfaces/agnostic/SConscript.agnostic')
+ff_wrapper_objs = SConscript('../../interfaces/ff-wrapped/SConscript.ff')
+test_objs = SConscript('src/SConscript')
 
-common_env.StaticLibrary( 'lapkt.a',  generic_objs + agnostic_objs ) 
+common_env.Program( 'h1-test', test_objs + generic_objs + agnostic_objs + ff_wrapper_objs ) 
