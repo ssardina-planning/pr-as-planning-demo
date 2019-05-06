@@ -26,3 +26,24 @@ Some quick and dirty instructions to build this project:
  4. issue the command ```qmake``` (or ```qmake-qt4``` if you have *both* Qt4 and Qt5 installed in your system). This will produce a working Makefile script,
 
  5. build the app with ```make```.
+
+### Sending Action from File
+
+Got to file in folder
+
+```
+thor/observations.log
+```
+
+and add an action, save it, and if the simhome application is running, and the action is applicable, then it will change the main view. If you want to see the observation, first click in "start observing file menu option".
+
+If you want to send another action, remove the action in observations.log write the new action, save the file, and it will be read automatically again.
+
+In the file
+
+```
+thor/available_actions.log
+```
+
+you can see the actions available once you load a home.xml file.
+

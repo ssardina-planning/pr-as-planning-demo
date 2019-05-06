@@ -24,6 +24,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <widgets/HomeRenderer.hxx>
 #include <widgets/RoomView.hxx>
 #include <widgets/GoalSetView.hxx>
+#include <QTextStream>
+#include <model/SimHome.hxx>
+#include <planning/Observer.hxx>
+#include <string>
+#include <action.hxx>
+#include <model/Home.hxx>
+#include <model/Room.hxx>
+#include <model/Door.hxx>
+#include <model/WalkTo.hxx>
+#include <model/PickUp.hxx>
+#include <model/Drop.hxx>
+#include <model/OpenDoor.hxx>
+#include <model/CloseDoor.hxx>
+#include <model/StageProp.hxx>
+#include <model/StagePropAction.hxx>
+
 
 namespace UI
 {
@@ -35,11 +51,101 @@ AppWindow::AppWindow( QWidget* parent, Qt::WindowFlags flags )
 	setupWidgets();
 	mHomeScene = new HomeRenderer;
 	mGraphicDisplay->setScene( mHomeScene );
+
+	mFileWatcher = new QFileSystemWatcher(this);
+	connect(mFileWatcher, SIGNAL(fileChanged(const QString &)), this, SLOT(fileChanged(const QString &)));
+	mFileWatcher->addPath("thor/observations.log");
 }
 
 AppWindow::~AppWindow()
 {
 }
+
+void AppWindow::fileChanged(const QString & path)
+{
+
+	QFile f(path);
+	if (!f.open(QFile::ReadOnly | QFile::Text)) return;
+	QTextStream in(&f);	
+	//mObsActView->logAction(in.readAll());
+
+	std::string ObsName = in.readAll().toStdString();
+	// for(auto act : mSimHome->planningDomain().actions() ){
+	// 	std::cout << "compare : " << ObsName << " and "<<act->signature() << std::endl;
+	// 	if (act->signature().compare( ObsName ) == 0){
+	// 		mSimHome->observer()->actionExecuted(act->index());
+	// 		break;
+	// 	}
+	// }
+
+	for ( unsigned k = 0; k < mSimHome->home()->rooms().size(); k++ ){
+		for ( int i = 0; i < mSimHome->home()->rooms()[k]->walkToActions().size(); i++ )
+			{
+				std::string stripsName = mSimHome->home()->rooms()[k]->walkToActions()[i]->strips()->signature();
+                                std::cout << "compare : " << ObsName << " and "<< stripsName << std::endl;
+				if( stripsName.compare( ObsName ) == 0 ) {
+					mSimHome->home()->rooms()[k]->walkToActions()[i]->execute();
+					break;
+				}
+			}
+		for ( int i = 0; i < mSimHome->home()->rooms()[k]->pickUpActions().size(); i++ )
+			{
+				std::string stripsName = mSimHome->home()->rooms()[k]->pickUpActions()[i]->strips()->signature();
+				if( stripsName.compare( ObsName ) == 0 ) {
+					mSimHome->home()->rooms()[k]->pickUpActions()[i]->execute();
+					break;
+				}
+					
+			}
+		for ( int i = 0; i < mSimHome->home()->rooms()[k]->dropActions().size(); i++ )
+			{
+					
+				std::string stripsName = mSimHome->home()->rooms()[k]->dropActions()[i]->strips()->signature();
+				if( stripsName.compare( ObsName ) == 0 ) {
+					mSimHome->home()->rooms()[k]->dropActions()[i]->execute();
+					break;
+				}
+					
+			}
+
+	}
+
+	for ( unsigned k = 0; k < mSimHome->home()->doors().size(); k++ ){
+		for ( int i = 0; i < mSimHome->home()->doors()[k]->openActions().size(); i++ )
+			{
+				std::string stripsName = mSimHome->home()->doors()[k]->openActions()[i]->strips()->signature();
+				if( stripsName.compare( ObsName ) == 0 ) {
+					mSimHome->home()->doors()[k]->openActions()[i]->execute();
+					break;
+				}
+			}
+		for ( int i = 0; i < mSimHome->home()->doors()[k]->closeActions().size(); i++ )
+			{
+				std::string stripsName = mSimHome->home()->doors()[k]->closeActions()[i]->strips()->signature();
+				if( stripsName.compare( ObsName ) == 0 ) {
+					mSimHome->home()->doors()[k]->closeActions()[i]->execute();
+					break;
+				}
+			}
+	}
+	
+	for ( unsigned k = 0; k < mSimHome->home()->props().size(); k++ )	{
+		Application::StageProp* prop = mSimHome->home()->props()[k];
+		for (  QMap< QString, Application::StagePropAction* >::Iterator propActionIt = prop->actions().begin();
+			propActionIt != prop->actions().end(); propActionIt++ )
+		{
+			if ( !propActionIt.value()->checkPrecondition() ) continue;
+			std::string stripsName = propActionIt.value()->strips()->signature();
+			if( stripsName.compare( ObsName ) == 0 ) {
+				propActionIt.value()->execute();
+				break;
+			}
+		
+		}
+	}
+	
+	
+}	
 
 void	AppWindow::makeRoom( RoomView* v )
 {

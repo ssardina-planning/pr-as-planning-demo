@@ -34,7 +34,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QtGui/QWidget>
 #include <QPixmap>
 #include <QGroupBox>
+#include <QFileSystemWatcher>
 
+namespace Application{       
+	class  SimHome;
+}
+				  
 namespace UI
 {
 
@@ -42,7 +47,7 @@ class  RoomView;
 class  HomeRenderer;
 class  GoalSetView;
 class  ObservationsView;
-
+	
 class	AppWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -56,7 +61,7 @@ public:
 	QAction*		stopObsAction()		{ return mStopObsAction; }
 	GoalSetView*		goalSetView()		{ return mGoalsView; }
 	ObservationsView*	observationsView()	{ return mObsActView; }
-
+	void                    setSimHome( Application::SimHome* smh ){ mSimHome = smh;}
 signals:
 	void		loadHome( const QString& homeXmlPath );
 	void		setObsLevel( float v );
@@ -71,6 +76,10 @@ public slots:
 	void	setObsLevel50();
 	void	setObsLevel70();
 	void	setObsLevel100();
+
+protected slots:
+	
+	void    fileChanged(const QString & path);
 
 protected:
 
@@ -105,6 +114,11 @@ protected:
 	QAction*		mStopObsAction;
 	QMenu*			mObsLevelMenu;
 	ObservationsView*	mObsActView;
+
+	// Watch changes in File, if we use Thor to fill in observations
+	QFileSystemWatcher *    mFileWatcher;
+	Application::SimHome*   mSimHome;
+	
 };
 
 }

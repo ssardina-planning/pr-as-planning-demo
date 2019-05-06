@@ -28,6 +28,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <model/Agent.hxx>
 #include <model/StageProp.hxx>
 #include <planning/Observer.hxx>
+#include <fstream>      // std::fstream
+
 
 namespace Application
 {
@@ -85,6 +87,14 @@ void	SimHome::loadHome( const QString& homePath )
 
 	std::cout << "STRIPS fluents: " << mDomain.fluents().size() << std::endl;
 	std::cout << "STRIPS actions: " << mDomain.actions().size() << std::endl;
+
+	std::fstream fs;
+	fs.open ("thor/available_actions.log", std::fstream::in | std::fstream::out | std::fstream::app);
+
+	mDomain.print_actions(fs);
+
+	fs.close();
+
 }
 
 void	SimHome::initialStateUpdateRequested()

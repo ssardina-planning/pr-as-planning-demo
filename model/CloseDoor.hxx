@@ -49,7 +49,7 @@ public:
 	const QString&	roomName() const;
 	
 	void		makeSTRIPSAction( STRIPS_Problem& p );
-
+	Action*         strips() { return mSTRIPSAction; }
 signals:
 	
 	void	executed( unsigned index );

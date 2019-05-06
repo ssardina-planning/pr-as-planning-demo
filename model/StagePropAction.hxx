@@ -52,7 +52,7 @@ public:
 	virtual bool	checkPrecondition() = 0;
 
 	virtual void 	makeSTRIPSAction( STRIPS_Problem& p ) = 0;
-
+	virtual Action*         strips() { return mSTRIPSAction; }
 signals:
 
 	void	executed( unsigned index );
