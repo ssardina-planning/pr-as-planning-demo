@@ -47,3 +47,55 @@ thor/available_actions.log
 
 you can see the actions available once you load a home.xml file.
 
+
+### Thor simulation
+
+The Thor 3D home simulation include three parts:
+1. Sim-Home application
+2. Thor 3D home Unity file
+3. Python keyboard controller
+
+The python controller will be used to control the agent working around the 3D Home and reports back the monitored action(through thor/observations.log) to the Sim-Home applicaton.
+
+
+#### Sim-Home Application
+Steps to run Sim-Home:
+1. ./sim-home to open the application
+2. load the 2D home file called event_demo.xml
+3. Add some goals you want to track, you can find the example goals at thor/Goals.txt
+4. Click start Observation 
+
+#### Thor 3D home Unity file
+
+This file contain the 3D unity home, please place this file under the folder "/thor". The file size is about 500MB and it's not include in the repository.
+
+#### Python keyboard controller
+
+1. Install the python3 library
+
+* pip3 install pynput
+* pip3 install ai2thor
+* pip3 install inquirer
+* pip3 install Shapely
+
+2. Run the keyboard controller 
+python3 keyboard.py
+
+3. The unity screen should come out
+
+4. Controll the agent through the following command:
+
+* WASD for moving around
+* t for turn on/off the objects like TV, laptop, lightswitch
+* p for pick up the objects like pan, book, credit card
+* o for open and close the objects like door, fridge door
+* m for move hand forward
+* Up and Down arrow to move head up and down
+* Left and right arrow to rotate left and right
+
+
+
+
+
+
+
