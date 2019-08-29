@@ -7,7 +7,7 @@ TARGET = sim-home
 #CONFIG += debug
 DEPENDPATH += . widgets model planning
 QMAKE_CXXFLAGS += -std=c++0x
-INCLUDEPATH += . widgets model planning /home/yiding/Documents/LAPKT-public/include /home/yiding/Documents/LAPKT-public/interfaces/agnostic
+INCLUDEPATH += . widgets model planning /home/nirlipo/Sandboxes/LAPKT-public/include /home/nirlipo/Sandboxes/LAPKT-public/interfaces/agnostic
 LIBS += -L./lapkt-lib -llapkt 
 QT += xml
 
