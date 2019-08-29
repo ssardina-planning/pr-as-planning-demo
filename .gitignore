@@ -15,3 +15,5 @@
 moc*.*
 *.log
 *.strips
+
+thor/thor-linux
