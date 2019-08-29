@@ -77,7 +77,8 @@ void AppWindow::fileChanged(const QString & path)
 	// 		break;
 	// 	}
 	// }
-
+	
+	ObsName.erase(std::remove(ObsName.begin(), ObsName.end(), '\n'), ObsName.end());
 	for ( unsigned k = 0; k < mSimHome->home()->rooms().size(); k++ ){
 		for ( int i = 0; i < mSimHome->home()->rooms()[k]->walkToActions().size(); i++ )
 			{
