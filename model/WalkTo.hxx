@@ -49,6 +49,7 @@ public:
 	const QString& 	destName() const;
 
 	void		makeSTRIPSAction( STRIPS_Problem& p );
+	Action*         strips() { return mSTRIPSAction; }
 
 signals:
 

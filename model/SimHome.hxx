@@ -55,6 +55,7 @@ public:
 
 	aptk::STRIPS_Problem&		planningDomain() { return mDomain; }
 	Planning::Observer*		observer() { return mObserver; }
+	Home*                           home()     { return mHome; }
 	
 signals:
 	

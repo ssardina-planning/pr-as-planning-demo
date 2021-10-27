@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+<Home name="Scotland">
+	<Floorplan path="homes/House.jpeg" />
+	<InitialAgentLocation name="Foyer" />
+	<Items>
+		<Item name="Spatula">
+			<Location name="Kitchen" />
+		</Item>
+		<Item name="Bread">
+			<Location name="Kitchen" />
+		</Item>
+		<Item name="Soap_Bar">
+			<Location name="Bathroom" />
+		</Item>
+		<Item name="Remote_Control">
+			<Location name="Living_Room" />
+		</Item>
+		<Item name="Credit_Card">
+			<Location name="Bedroom" />
+		</Item>
+	</Items>
+	<StageProps>
+		<Prop name="TV">
+			<Location name="Living_Room" />
+			<Properties>
+				<Property name="on" initial="0" />
+				<Property name="off" initial="1" />
+			</Properties>
+			<Actions>
+				<Action name="Turn_On" />
+				<Action name="Turn_Off" />
+			</Actions>
+		</Prop>
+		<Prop name="Microwave_Oven">
+			<Location name="Kitchen" />
+			<Properties>
+				<Property name="on" initial="0" />
+				<Property name="off" initial="1" />
+			</Properties>
+			<Actions>
+				<Action name="Turn_On" />
+				<Action name="Turn_Off" />
+			</Actions>
+		</Prop>
+		<Prop name="Stove">
+			<Location name="Kitchen" />
+			<Properties>
+				<Property name="on" initial="0" />
+				<Property name="off" initial="1" />
+			</Properties>
+			<Actions>
+				<Action name="Turn_On" />
+				<Action name="Turn_Off" />
+			</Actions>
+		</Prop>
+		<Prop name="Bed_1" >
+			<Location name="Bedroom" />
+			<Properties>
+				<Property name="lying" initial="0" />
+			</Properties>
+			<Actions>
+				<Action name="Lie_Down" />
+				<Action name="Get_Off" />
+			</Actions>
+		</Prop>
+		<Prop name="Couch_1" >
+			<Location name="Living_Room" />
+			<Properties>
+				<Property name="sitting" initial="0" />
+			</Properties>
+			<Actions>
+				<Action name="Sit_Down" />
+				<Action name="Get_Up" />
+			</Actions>
+		</Prop>
+		<Prop name="Sofa" >
+			<Location name="Living_Room" />
+			<Properties>
+				<Property name="sitting" initial="0" />
+			</Properties>
+			<Actions>
+				<Action name="Sit_Down" />
+				<Action name="Get_Up" />
+			</Actions>
+		</Prop>
+		<Prop name="LightSwitch_Bedroom" >
+			<Location name="Bedroom" />
+			<Properties>
+				<Property name="off" initial="0" />
+				<Property name="on" initial="1" />
+			</Properties>
+			<Actions>
+				<Action name="Turn_On" />
+				<Action name="Turn_Off" />
+			</Actions>
+		</Prop>
+		<Prop name="Laptop" >
+			<Location name="Bedroom" />
+			<Properties>
+				<Property name="on" initial="0" />
+				<Property name="off" initial="1" />
+			</Properties>
+			<Actions>
+				<Action name="Turn_On" />
+				<Action name="Turn_Off" />
+			</Actions>
+		</Prop>
+	</StageProps>
+	<Rooms>
+		<Room name="Bathroom">
+			<Geometry>
+				<Point x="335" y="0" />
+				<Point x="335" y="170" />
+				<Point x="530" y="170" />
+<Point x="530" y="60" />
+<Point x="410" y="60" />
+			<Point x="410" y="0" />	
+			</Geometry>
+			<Center>
+				<Point x="432" y="85" />
+			</Center>
+			<Connections>
+				<Room name="Kitchen" door="Bathroom_Door" />
+<Room name="Shower" door="Shower_Door" />
+			</Connections>
+		</Room>
+		<Room name="Shower">
+			<Geometry>
+				<Point x="410" y="0" />
+				<Point x="410" y="60" />
+				<Point x="530" y="60" />
+				<Point x="530" y="0" />
+			</Geometry>
+			<Center>
+				<Point x="430" y="30" />
+			</Center>
+			<Connections>
+				<Room name="Bathroom" door="Shower_Door" />
+			</Connections>
+		</Room>
+		<Room name="Bedroom">
+			<Geometry>
+				<Point x="0" y="350" />
+				<Point x="0" y="580" />
+				<Point x="160" y="580" />
+				<Point x="160" y="350" />
+			</Geometry>
+			<Center>
+				<Point x="80" y="465" />
+			</Center>
+			<Connections>
+				<Room name="Foyer" door="Bedroom_Door" />
+			</Connections>
+		</Room>
+		<Room name="Kitchen">
+			<Geometry>
+				<Point x="335" y="170" />
+				<Point x="335" y="350" />
+				<Point x="530" y="350" />
+				<Point x="530" y="170" />
+			</Geometry>
+			<Center>
+				<Point x="430" y="260" />
+			</Center>
+			<Connections>
+				<Room name="Bathroom" door="Bathroom_Door" />
+				<Room name="Living_Room" door="Kitchen_Door"/>
+			</Connections>
+		</Room>
+		<Room name="Living_Room">
+			<Geometry>
+				<Point x="125" y="0" />
+				<Point x="125" y="350" />
+				<Point x="335" y="350" />
+				<Point x="335" y="0" />
+			</Geometry>
+			<Center>
+				<Point x="230" y="175" />
+			</Center>
+			<Connections>
+				<Room name="Kitchen" door="Kitchen_Door" />
+				<Room name="Foyer" door="Living_Room_Door"/>
+			</Connections>
+		</Room>
+		<Room name="Foyer">
+			<Geometry>
+				<Point x="0" y="120" />
+				<Point x="0" y="350" />
+				<Point x="125" y="350" />
+				<Point x="125" y="120" />
+			</Geometry>
+			<Center>
+				<Point x="70" y="235" />
+			</Center>
+			<Connections>
+				<Room name="Bedroom" door="Bedroom_Door" />
+				<Room name="Living_Room" door="Living_Room_Door"/>
+			</Connections>
+		</Room>
+	</Rooms>
+	<Doors>
+		<Door name="Bedroom_Door" open="no" />
+		<Door name="Living_Room_Door" open="no" />
+		<Door name="Kitchen_Door" open="no" />
+		<Door name="Shower_Door" open="no" />
+		<Door name="Bathroom_Door" open="no" />
+		
+	</Doors>
+</Home>

@@ -1,0 +1,6 @@
+Sleep:  (at Bedroom) (off Light_Bedroom) (closed Bedroom_Door)
+Shopping: (on Laptop)(carring Credit_Card)(at Bedroom)(On Light_Bedroom)
+Cooking: (at Kitchen)(carring Spatula)
+Shower:(at Shower)(closed Shower_Door)(closed Bathroom_Door)(carring soap)
+Pleasure:(on TV_Set)(at Living_Room)(carring Remote_Control)
+

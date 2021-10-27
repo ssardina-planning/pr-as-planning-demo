@@ -52,6 +52,7 @@ protected:
 	QListView*		mActionLogView;
 	QStringListModel	mActionLog;
 	
+	
 
 };
 

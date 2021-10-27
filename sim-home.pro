@@ -4,6 +4,9 @@
 
 TEMPLATE = app
 TARGET = sim-home
+
+
+# ALl this block is gone from nirlio recent repo
 DESTDIR = ./
 BUILDDIR = .build/
 OBJECTS_DIR = $$BUILDDIR/.obj
@@ -16,6 +19,7 @@ UI_DIR = $$BUILDDIR/.ui
 DEPENDPATH += . widgets model planning
 QMAKE_CXXFLAGS += -std=c++0x
 INCLUDEPATH += . widgets model planning extras/LAPKT-public/include extras/LAPKT-public/interfaces/agnostic
+#INCLUDEPATH += . widgets model planning /home/nirlipo/Sandboxes/LAPKT-public/include /home/nirlipo/Sandboxes/LAPKT-public/interfaces/agnostic
 LIBS += -L./lapkt-lib -llapkt 
 QT += xml
 

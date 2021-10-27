@@ -1,5 +1,7 @@
 import os
 
+lapkt_base_dir = os.environ.get('LAPKT_PATH')
+
 debug = ARGUMENTS.get( 'debug', 0 )
 common_env = Environment(ENV = os.environ)
 
@@ -15,7 +17,7 @@ else:
 
 Export( 'common_env' )
 
-generic_objs = SConscript('../extras/LAPKT-public/src/SConscript.aptk')
-agnostic_objs = SConscript('../extras/LAPKT-public/interfaces/agnostic/SConscript.agnostic')
+generic_objs = SConscript( os.path.join( lapkt_base_dir,'src/SConscript.aptk') )
+agnostic_objs = SConscript( os.path.join( lapkt_base_dir,'interfaces/agnostic/SConscript.agnostic') )
 
-common_env.StaticLibrary( 'lapkt.a',  generic_objs + agnostic_objs ) 
+common_env.StaticLibrary( 'lapkt.a', generic_objs + agnostic_objs ) 
