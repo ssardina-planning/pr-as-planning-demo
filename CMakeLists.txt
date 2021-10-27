@@ -20,12 +20,12 @@ add_definitions(-DQT_MAJOR_VERSION=4)
 
 
 # Find QT packages
-find_package(Qt4 4.8.7 REQUIRED QtCore QtGui QtXml QtSvg QtNetwork)
+FIND_PACKAGE(Qt4 4.8.7 REQUIRED QtCore QtGui QtXml QtSvg QtNetwork)
 INCLUDE(${QT_USE_FILE})
 
 
 # INCLUDE .hxx
-include_directories(
+INCLUDE_DIRECTORIES(
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${QT_INCLUDES}
         ${PROJECT_SOURCE_DIR}/widget/
@@ -36,10 +36,10 @@ include_directories(
     )
 
 
-set(HEADERS
+SET(HEADERS
         model/SimHomeConfig.hxx model/SimHome.hxx widgets/AppWindow.hxx model/Home.hxx model/Room.hxx widgets/HomeRenderer.hxx widgets/RoomView.hxx widgets/GraphicsFactory.hxx model/WalkTo.hxx widgets/GoalSetView.hxx planning/Observer.hxx planning/Goal.hxx widgets/GoalView.hxx widgets/NewGoalDialog.hxx planning/GoalRecognizer.hxx  model/OpenDoor.hxx model/CloseDoor.hxx model/Door.hxx model/Agent.hxx model/ItemManager.hxx model/Item.hxx model/Drop.hxx model/PickUp.hxx model/StageProp.hxx model/StagePropAction.hxx model/TurnOn.hxx model/TurnOff.hxx model/LieDown.hxx model/GetOff.hxx model/SitDown.hxx model/GetUp.hxx widgets/ObservationsView.hxx planning/PlanningTask.hxx
         )
-set(SOURCES
+SET(SOURCES
         main.cxx model/SimHomeConfig.cxx model/SimHome.cxx widgets/AppWindow.cxx model/Home.cxx model/Room.cxx widgets/HomeRenderer.cxx widgets/RoomView.cxx widgets/GraphicsFactory.cxx model/WalkTo.cxx widgets/GoalSetView.cxx planning/Observer.cxx planning/Goal.cxx widgets/GoalView.cxx widgets/NewGoalDialog.cxx planning/GoalRecognizer.cxx model/OpenDoor.cxx model/CloseDoor.cxx model/Door.cxx model/Agent.cxx model/ItemManager.cxx model/Item.cxx model/Drop.cxx model/PickUp.cxx model/StageProp.cxx model/StagePropAction.cxx model/TurnOn.cxx model/TurnOff.cxx model/LieDown.cxx model/GetOff.cxx model/SitDown.cxx model/GetUp.cxx widgets/ObservationsView.cxx planning/PlanningTask.cxx
         )
 #file(GLOB_RECURSE INC_ALL "model/*.cxx" "model/*.hxx" "widget/*.cxx" "widget/*.hxx")
